@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.deployment.metadata.name }}-service
+  labels: 
+    app: {{ .Values.podLabels.app }}
+spec:
+  type: {{ .Values.app.serviceType }}
+  ports:
+    - port: {{ .Values.app.port }}
+      targetPort: {{ .Values.app.targetPort }}
+      protocol: {{ .Values.app.TCP }}
+

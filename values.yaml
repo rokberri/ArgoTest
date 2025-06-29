@@ -1,0 +1,33 @@
+
+replicaCount: 1
+
+deployment:
+  metadata:
+    name: test-app  
+    namespace: default
+
+image:
+  repository: rokberri/my_repo
+  tag: v1
+  pullPolicy: IfNotPresent
+  pullSecrets: dockerhub-secret
+
+app:
+  app: test-app
+  port: 8080
+  targetPort: 9001
+  serviceType: NodePort
+  nodePort: 30080 
+  protocol: TCP
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+
+
+podLabels:
+  app: test-app
